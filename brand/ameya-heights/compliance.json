@@ -1,33 +1,63 @@
 {
-  "_note": "Machine-checked rules for every Ameya Heights draft. Errors block the draft from the queue. Source of truth: the owner fact pass in the Ameyaheights website repo (PRODUCT.md, llms.txt), Oct 2026. Only the owner edits this file.",
+  "_note": "Machine-checked rules for every Ameya Heights draft. Errors block the draft from the queue. Sources: owner fact pass (Oct 2026), Brand Canon (13 Jul 2026), owner decisions of 21 Oct 2026. Only the owner edits this file. Oct 2026 effectiveness pass (118 real captions): added column-free paraphrases, RERA/booking, public-documents, scarcity, appreciation, unlisted-fact, title, placeholder and completion-date rules. 21 Oct 2026 team-trial pass: refusals (\"not for sale\", \"aren't taking bookings\", \"won't take any advance\") no longer trip the sale/booking checks; \"until/once approvals are in place\" passes; plural bookings/prices; added %-a-year and annual-yield returns, reserve/secure/first-in-line, few-left/going-fast/demand, approved-by-DTCP, handing-over/ready-to-move, many-families social proof; Brigade Road allowed. The linter also reads content.title, template params and lead.requirement.",
   "banned": [
     { "pattern": "\\b(guaranteed|assured|fixed)\\s+(returns?|rental|rent|yield|appreciation|income)", "why": "no guaranteed returns, ever" },
-    { "pattern": "\\b\\d+(\\.\\d+)?\\s?%\\s*(returns?|yield|appreciation|roi|growth|rental)", "why": "no return, yield or growth figures without a visible source the owner has approved" },
-    { "pattern": "(₹|\\bRs\\.?|\\bINR)\\s?\\d|\\b\\d+(\\.\\d+)?\\s?(lakhs?|lacs?|crores?|cr)\\b|per\\s+sq\\.?\\s?ft", "why": "pricing is on request only" },
+    { "pattern": "\\b\\d+(\\.\\d+)?\\s?%\\s*(?:[a-z-]+\\s+){0,2}(returns?|yields?|appreciation|roi|growth|rental|income)\\b|\\b(returns?|yields?|roi|income|growth|appreciation)\\s+of\\s+(?:(?:up\\s+to|about|around|over|nearly|at\\s+least)\\s+)?\\d+(\\.\\d+)?\\s?%|\\b\\d+(\\.\\d+)?\\s?%\\s*(p\\.?\\s?a\\b|per\\s+annum|a\\s+year|per\\s+year|annually|yearly)", "why": "no return, yield or growth figures without a visible source the owner has approved" },
+    { "pattern": "\\bROI\\b|\\bdoubl(e|es|ing)\\s+(your|in|the)\\b", "why": "no return claims" },
+    { "pattern": "(₹|\\bRs\\.?|\\bINR)\\s?\\d|\\b\\d+(\\.\\d+)?\\s?(lakhs?|lacs?|crores?|cr)\\b|per\\s+sq\\.?\\s?ft|\\b\\d+\\s+(a|per)\\s+(square\\s+(foot|feet|metre|meter)|sq\\.?\\s?(ft|m))\\b", "why": "pricing is on request only" },
     { "pattern": "\\bRERA[- ]?(registered|approved|certified|compliant)|\\bregistered\\s+(with|under)\\s+RERA", "why": "no Ameya Heights project is RERA-registered" },
-    { "pattern": "RERA[^.\\n]{0,30}(in progress|applied|pending|soon)", "why": "the only approved wording is \"RERA registration to follow\"" },
-    { "pattern": "\\bDTCP[- ]?(approved|sanctioned)", "why": "Salavakkam DTCP approval is to follow" },
-    { "pattern": "column[- ]free|\\bA[- ]grade\\b|fire\\s+NOC|\\b(two|2|second|twin)\\s+lifts?\\b", "why": "banned FOUR·94 spec claims (one lift, no fire NOC or grade claims)" },
-    { "pattern": "award[- ]winning|\\btrusted by\\b|\\b\\d+\\+?\\s+(happy\\s+)?(families|customers|clients|buyers)\\b|\\btrack record\\b", "why": "there are no awards, testimonials or sales numbers to cite" },
-    { "pattern": "\\b(best|safest|smartest)\\s+investment\\b|\\bonce[- ]in[- ]a[- ]lifetime\\b|\\bhurry\\b|\\blast few\\b|\\blimited[- ]period\\b", "why": "no hype or pressure selling; the voice is checkable over persuasive" },
-    { "pattern": "\\bdrone\\s+(shot|footage|view)|\\baerial\\s+view\\b", "why": "no real drone footage exists; do not present stock aerials as the site" }
+    { "pattern": "RERA[^.\\n]{0,30}(in progress|applied|pending|soon|not yet granted)|(in progress|applied|pending)[^.\\n]{0,30}RERA|\\bK-?RERA\\s+portal\\b|\\bregistration\\s+(in progress|pending|applied)\\b", "why": "the only approved wording is \"RERA registration to follow\"" },
+    { "pattern": "\\bDTCP[- ]?(approved|sanctioned)|\\b(approved|sanctioned)\\s+by\\s+(the\\s+)?(DTCP|K-?RERA|RERA)\\b", "why": "Salavakkam DTCP approval is to follow" },
+    { "pattern": "(?<!\\b(?:until|till|once|when|after|before)\\s+(?:the\\s+|all\\s+|our\\s+|its\\s+)?)\\bapprovals?\\s+(are\\s+)?(secured|in place|received|done|granted)\\b|\\bfully\\s+approved\\b", "why": "make no approval claims; Salavakkam approvals are to follow (\"until/once approvals are in place\" is a future condition and passes)" },
+    { "pattern": "column[- ]?free|pillar[- ]?(less|free)|\\bA[- ]grade\\b|fire\\s+NOC|\\b(two|2|second|twin)\\s+lifts?\\b", "why": "banned FOUR·94 spec claims" },
+    { "pattern": "award[- ]winning|\\btrusted by\\b|\\b\\d+\\+?\\s+(happy\\s+)?(families|customers|clients|buyers)\\b|\\btrack record\\b|\\bcompleted projects?\\b|\\b(many|several|hundreds\\s+of|thousands\\s+of|dozens\\s+of|countless|numerous)\\s+(happy\\s+)?(families|customers|clients|buyers|investors|tenants|homeowners)\\b|\\b(have|has)\\s+(already\\s+)?chosen\\s+(us|ameya)\\b", "why": "there are no awards, testimonials, sales numbers or completed projects to cite" },
+    { "pattern": "\\b(best|safest|smartest)\\s+investment\\b|\\bonce[- ]in[- ]a[- ]lifetime\\b|\\bhurry\\b|\\blast few\\b|\\blimited[- ]period\\b|\\blast\\s+call\\b", "why": "no hype or pressure selling" },
+    { "pattern": "\\b(floors?|units?|plots?)\\s+(available|remaining|remain|left)\\b|\\bonly\\s+\\d+\\s+(floors?|units?|plots?)\\b", "why": "no availability or scarcity claims" },
+    { "pattern": "\\bfew\\s+(?:[\\w-]+\\s+){0,2}(left|remain|remains|remaining)\\b|\\b(going|selling|filling(\\s+up)?|moving)\\s+fast\\b|\\bdemand\\s+is\\s+(very\\s+)?(high|huge|strong|soaring)\\b|\\b(high|huge|strong|soaring)\\s+demand\\b", "why": "no scarcity or demand claims" },
+    { "pattern": "\\b(secure|reserve|block|lock\\s+in|grab|claim)\\s+(your|a|an|the)\\s+(?:[\\w-]+\\s+)?(plots?|floors?|units?|spaces?|offices?|shops?)\\b|\\bfirst\\s+in\\s+line\\b|\\bbe\\s+(among\\s+)?the\\s+first\\s+to\\s+(own|book|buy|get|secure|reserve|lease)\\b", "why": "nothing may invite booking or reserving; no queue-jumping pressure" },
+    { "pattern": "\\bready[- ]to[- ](move|occupy)\\b|\\bhanding\\s+over\\s+(the\\s+)?(keys|possession|in|by|from|on|units?|floors?|plots?)\\b", "why": "FOUR·94 is under construction; the only date is \"target completion Q1 2028\"" },
+    { "pattern": "\\bdrone\\s+(shot|footage|view)|\\baerial\\s+view\\b", "why": "no real drone footage exists" },
+    { "pattern": "built\\s+in\\s+the\\s+open|#builtintheopen|\\bin\\s+the\\s+open\\b|\\bbuil(t|d|ding)[- ]in[- ]public\\b", "why": "the phrase was retired by the owner (21 Oct 2026)" },
+    { "pattern": "!", "why": "no exclamation marks (Brand Canon)" },
+    { "pattern": "\\b(luxury|iconic|world[- ]class|stunning|unparalleled|opulent|majestic)\\b", "why": "banned brand words (Brand Canon)" },
+    { "pattern": "(?<!\\b(don[’']?t|do not|never)\\s)\\btrust us\\b|\\btransparent\\b", "why": "the brand says \"verify us\"; \"transparent\" is overused" },
+    { "pattern": "🔥|🚀", "why": "banned emoji" },
+    { "pattern": "\\b(UPI|IFSC)\\b|\\baccount\\s+(no\\.?|number)\\b|\\b(pay|transfer|deposit)\\b[^.\\n]{0,40}\\binto\\b[^.\\n]{0,20}\\baccount\\b", "why": "never share payment instructions in social or chat" },
+    { "pattern": "\\b(prestige|sobha|godrej|dlf|lodha|oberoi|puravankara|casagrand|g\\s?square|hiliving|vgn|emaar)\\b|\\bbrigade\\b(?![\\s-]+(road|rd)\\b)", "why": "never name or compare with other developers (Brigade Road, the Bengaluru street, is fine)" },
+    { "pattern": "\\b(no|zero|without)\\s+(single\\s+)?(columns?|pillars?)\\b|\\bcolumns?\\b[^.\\n]{0,30}\\b(never|missing)\\b|\\bmissing\\W+columns\\b|\\bcolumn\\s+grid\\b|\\b(gaps\\s+between|includes\\s+the)\\s+pillars\\b|\\bnothing\\s+in\\s+the\\s+way\\b|\\busable\\s+carpet\\b|\\bnear[- ]100\\s?%", "why": "column-free paraphrase: FOUR·94 may not be described as column- or pillar-free in any wording" },
+    { "pattern": "\\b(five|5|six|6)\\s+(levels?|floors|storeys?|stories)\\b|\\bG\\s?\\+\\s?4\\b|\\btotal\\s+(built[- ]up\\s+)?area\\b|\\bbuilt[- ]up\\s+area\\b|\\b\\d{1,3},?\\d{3}\\s?(sq\\.?\\s?ft|square\\s+feet)\\s+building\\b|\\b\\d+\\s+(bikes|two[- ]wheelers)\\b", "why": "FOUR·94 is basement + ground + 3 floors; no total built-up area or unlisted parking figures" },
+    { "pattern": "(?<!\\b(?:not|no|never|aren[’']?t|isn[’']?t|won[’']?t|don[’']?t|doesn[’']?t|can[’']?t|cannot)\\s+(?:(?:be|being|yet|currently|taking|take|accepting|accept|any|a|an|the)\\s+){0,3})\\b(any|a\\s+single|take|taking|accept|accepting)\\s+(bookings?|deposits?|advances?|tokens?)\\b|\\bbookings?\\s+(are\\s+)?(now\\s+)?(open|opening|starts?)\\b|\\bregistration\\s+number\\b", "why": "implies a pending RERA registration and a sale; FOUR·94 is lease-only and the only approved RERA wording is Salavakkam's \"to follow\"" },
+    { "pattern": "\\b(papers?|documents?|drawings?|approvals?|pack)\\b[^.\\n]{0,40}\\b(are|is|stay|go|goes)\\s+public\\b|\\bpublic\\s+(document\\s+)?pack\\b|\\bpapers\\s+public\\b|\\bpublish(ed)?\\s+(ours|our\\s+(documents?|papers?|approvals?|title))\\b|\\bpublished\\s+documents?\\b|\\b(share|post)\\s+(all\\s+of\\s+)?(them|it|ours)\\s+publicly\\b", "why": "approval documents are shared with a prospect's advocate on request, never posted publicly" },
+    { "pattern": "\\brar(e|est)\\b|\\bvery\\s+few\\s+(spaces|floors|units|plots|offices)\\b", "why": "no scarcity or rarity claims" },
+    { "pattern": "\\b(land|property|plots?|values?|prices?)\\s+(appreciates?|rises?|grows?)\\b|\\b(will|to|set to|likely to)\\s+appreciate\\b|\\b(prices?|values?|rents?|rates?)\\s+(will|are\\s+set\\s+to|are\\s+likely\\s+to|could|should|may)\\s+(rise|grow|go\\s+up|increase|double|jump)\\b|\\bappreciation\\b|\\bcapital\\s+gains?\\b", "why": "no appreciation or return claims" },
+    { "pattern": "\\b(\\d+|twelve|forty[- ]four)[- ]?(metres?|meters?|m|foot|feet|ft)\\b[^.\\n]{0,20}\\broads?\\b|\\broads?\\b[^.\\n]{0,30}\\b\\d+\\s?(feet|ft|metres?|m)\\s+wide\\b|\\b\\w+[- ]minutes?\\s+(drive|walk)\\b", "why": "road widths and travel times are not on the fact sheet; say \"two road frontages\" and the metro distances" },
+    { "pattern": "\\bmanaging\\s+director\\b|\\bMD\\b|\\bsanghvi\\b", "why": "the founder is \"Sahil Nahar, Founder\" (formal: Founder & Designated Partner)" },
+    { "pattern": "\\b(reply|replies|response)\\b[^.\\n]{0,40}\\bminutes\\b", "why": "the fact is \"enquiries are answered within a couple of hours\"; no unlisted reply-time metrics" },
+    { "pattern": "\\[[^\\]\\n]{1,40}\\]", "why": "unfilled template placeholder" }
   ],
   "combos": [
-    { "all": ["salavakkam", "\\b(book(ing)?|buy|purchase|for sale|reserve|eoi|expression of interest|token|advance|price|pre[- ]?launch)\\b"], "message": "Salavakkam is not RERA-registered: posts may share progress, not invite booking, buying, EOIs or prices (RERA s.3)" },
-    { "all": ["jodhpur", "\\b(book(ing)?|buy|purchase|for sale|available|reserve|enquire|price)\\b"], "message": "Jodhpur is early planning and not for sale" },
-    { "all": ["four\\s?[·.\\-]?\\s?94", "\\b(for sale|buy|purchase|ownership)\\b"], "message": "FOUR·94 is offered for lease, pre-lease or build-to-suit, not for sale" }
+    { "all": ["salavakkam", "(?<!\\b(?:not|no|never|aren[’']?t|isn[’']?t|won[’']?t|don[’']?t|doesn[’']?t|can[’']?t|cannot)\\s+(?:(?:be|being|yet|currently|taking|take|accepting|accept|offering|offered|open|opening|available|up|for|any|a|an|the)\\s+){0,3})\\b(book(s|ed|ing|ings)?|buy|purchase|for sale|reserve|eoi|expression of interest|tokens?|advances?|prices?|pre[- ]?launch)\\b"], "message": "Salavakkam approvals are to follow: posts may share progress, not invite booking, buying, EOIs or prices (RERA s.3)" },
+    { "all": ["jodhpur", "(?<!\\b(?:not|no|never|aren[’']?t|isn[’']?t|won[’']?t|don[’']?t|doesn[’']?t|can[’']?t|cannot)\\s+(?:(?:be|being|yet|currently|taking|take|accepting|accept|offering|offered|open|opening|available|up|for|any|a|an|the)\\s+){0,3})\\b(book(s|ed|ing|ings)?|buy|purchase|for sale|available|reserve|enquire|prices?)\\b"], "message": "Jodhpur is early planning and not offered" },
+    { "all": ["four\\s?[·.\\-]?\\s?94", "(?<!\\b(?:not|no|never|aren[’']?t|isn[’']?t|won[’']?t|don[’']?t|doesn[’']?t|can[’']?t|cannot)\\s+(?:(?:be|being|yet|currently|offering|offered|open|available|up|for|a|an|the)\\s+){0,3})\\b(for sale|buy|purchase|ownership)\\b"], "message": "FOUR·94 is offered for lease, pre-lease or build-to-suit, not for sale" }
   ],
+  "_negation_note": "Combos and the booking/deposit rule skip a sale or booking word that directly follows a refusal (not, no, never, aren't, isn't, won't, don't, can't, cannot), allowing up to three filler words from a fixed list (be, yet, currently, taking, accepting, offered, available, for, any, a, the ...). \"No need to buy\" or \"never been easier to book\" still fire because their middle words are not on the list.",
   "conditional": [
     { "if": "\\b(possession|handover|completion|ready by|complete by|completed by)\\b", "then_require": "\\b(target|targeted|expected|planned|subject to)\\b", "message": "dates are targets: say \"target completion Q1 2028\", never a promise" },
-    { "if": "\\bsalavakkam\\b[\\s\\S]*\\b(rera|dtcp)\\b|\\b(rera|dtcp)\\b[\\s\\S]*\\bsalavakkam\\b", "then_require": "to follow", "message": "Salavakkam approvals must be described as \"to follow\"" }
+    { "if": "\\bsalavakkam\\b[\\s\\S]*\\b(rera|dtcp)\\b|\\b(rera|dtcp)\\b[\\s\\S]*\\bsalavakkam\\b", "then_require": "to follow", "message": "Salavakkam approvals must be described as \"to follow\"" },
+    { "if": "\\b(NRI|NRIs|OCI|OCIs|FEMA|NRE|NRO)\\b", "then_require": "subject to applicable law", "message": "NRI content must say \"Subject to applicable law\"" },
+    { "if": "(?<!\\bshow\\s(a|our)\\s)\\b(renders?|rendering|3d view|visuali[sz]ation)\\b", "then_require": "artist'?s impression", "message": "renders must be labelled \"Artist's impression\"" },
+    { "if": "\\b(possession|handover|completion|ready by|complete by|completed by)\\b", "then_require": "\\b(q1\\s+2028|february\\s+2028|feb\\s+2028)\\b", "message": "the only completion date is \"target completion Q1 2028\" (website: target February 2028)" }
   ],
   "promo_footer": [],
   "warn": [
-    { "pattern": "\\b(ultra[- ]luxury|world[- ]class|iconic|landmark|premium)\\b", "why": "check this adjective is earned and not puffery" },
-    { "pattern": "\\bNRI\\b|\\bgulf\\b|\\bdubai\\b", "why": "NRI content: confirm nothing implies FEMA or tax advice" },
+    { "pattern": "\\b(ultra[- ]luxury|landmark|premium|exclusive)\\b", "why": "check this word is earned and not puffery" },
+    { "pattern": "\\bgulf\\b|\\bdubai\\b", "why": "NRI content: confirm nothing implies FEMA or tax advice" },
     { "pattern": "\\bmetro\\b", "why": "distances must match the fact sheet (about 1.2 km Rajajinagar, 1.7 km Mahalakshmi)" },
-    { "pattern": "\\brender(ing)?s?\\b|\\b3d\\b|\\bvisuali[sz]ation\\b", "why": "renders must be labelled as artist's impressions" },
-    { "pattern": "\\bsq\\.?\\s?ft\\b", "why": "areas must match the fact sheet and say \"about\"" }
+    { "pattern": "\\bsq\\.?\\s?ft\\b", "why": "areas must match the fact sheet and say \"about\"" },
+    { "pattern": "\\binquir(y|ies)\\b", "why": "house style is \"enquiry\"" },
+    { "pattern": "\\bbrokers?\\b", "why": "house style is \"channel partner\"" },
+    { "pattern": "\\bstock (photo|image)|\\billustrative\\b", "why": "make sure stock is clearly labelled and never shown as the real site" },
+    { "pattern": "post[- ]tensioned|\\bPT\\s+beams?\\b|\\blouv(re|er)s?\\b|\\bfa[cç]ade\\b", "why": "structural and facade specs are not on the fact sheet" }
   ],
   "max_length": { "instagram": 2200, "facebook": 63206, "gbp": 1500, "linkedin": 3000, "youtube": 5000, "whatsapp": 4096 }
 }

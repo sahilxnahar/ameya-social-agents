@@ -1,7 +1,7 @@
 {
-  "name": "social-media-agent",
-  "version": "0.1.0",
-  "description": "A Claude Code agent team that drafts a brand's social media and never posts without the owner's approval.",
+  "name": "ameya-social-agents",
+  "version": "0.3.0",
+  "description": "The Claude Code agent team that drafts Ameya Heights' social media and never posts without the owner's approval.",
   "type": "module",
   "license": "MIT",
   "engines": { "node": ">=20" },
@@ -9,7 +9,16 @@
     "queue": "node scripts/queue.mjs",
     "approve": "node scripts/queue.mjs approve",
     "reject": "node scripts/queue.mjs reject",
+    "review": "node scripts/review.mjs",
     "publish": "node scripts/publish.mjs",
+    "inbox": "node scripts/inbox.mjs",
+    "insights": "node scripts/insights.mjs",
+    "youtube-auth": "node scripts/auth/youtube-token.mjs",
+    "schedule:install": "sh scripts/schedule/install.sh",
+    "schedule:uninstall": "sh scripts/schedule/uninstall.sh",
     "test": "node --test tests/"
+  },
+  "optionalDependencies": {
+    "@vercel/blob": "^1.0.0"
   }
 }

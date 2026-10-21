@@ -1,24 +1,47 @@
 # Ameya Heights: channel playbook
 
-Starting cadence. The Results department proposes changes from data; the owner decides.
+Owner decision, 21 October 2026: all channels, moderate cadence. The Results department proposes
+changes from data; the owner decides.
 
 | Channel | Queue `channel` | Cadence | Formats | Publishing |
 |---|---|---|---|---|
-| Instagram | `instagram` | 3 posts + 2 reels a week | Site progress, founder notes, locality | Live via Meta API (needs a public media URL) or handoff |
-| Facebook | `facebook` | Mirror Instagram, 3 a week | Same content, longer captions | Live via Meta API or handoff |
-| Google Business Profile | `gbp` | 1 update a week; every review answered within 24 h | Updates, review replies, Q&A | Handoff (post from outbox) |
-| WhatsApp | `whatsapp` | Every lead answered, drafts within 1 h of the message | Replies, site-visit booking | Live via Cloud API within the 24 h window, else handoff |
-| LinkedIn | `linkedin` | 2 a week (company); founder posts drafted for the founder | Leasing, process, approvals-first story | Handoff |
-| YouTube | `youtube` | 2 a month | Site walk-throughs, progress diaries | Handoff (upload by hand) |
+| Instagram | `instagram` | 4–5 a week (about 2 reels) | Site Diary, Study, Ask Ameya, carousels | Meta API (one image or video per item: a public URL, or a local file uploaded at publish time) or handoff. Carousels are posted by hand |
+| Facebook | `facebook` | Mirrors Instagram | Same content, longer captions | Meta API (one image or video per item; no reels, a video goes as a post) or handoff |
+| LinkedIn | `linkedin` | 3–4 a week (company); founder posts drafted for the founder | Leasing, Ledger, Founder's Desk, Journal reshares | Handoff |
+| YouTube | `youtube` | 2 a month | Site walkarounds, founder intro, walkthrough screen-records | Handoff |
+| Google Business Profile | `gbp` | 1 update a week; every review answered within 24 h | Dated progress, Q&A, review replies | Handoff |
+| WhatsApp | `whatsapp` | Every lead answered, draft within 1 h | Replies, site-visit booking, document pack | Cloud API within 24 h window, else handoff |
 
-## Content pillars
+Default posting time: 13:30 IST, avoid late night. At least a day between posts on the same channel
+except reels and stories.
 
-1. **Built in the open**: real construction progress with dates (FOUR·94).
-2. **Approvals first**: what is approved, what is to follow, how to check documents.
-3. **Locality**: Basaveshwara Nagar and West Bengaluru access; Kanchipuram district growth facts with sources.
-4. **Founder notes**: why we build few projects, how we work.
-5. **Answers**: real questions from leads, answered publicly with no personal details.
+Slots: Instagram 13:30. Facebook mirrors go out at 18:00 the same day as the Instagram post, or at
+13:30 the next day, and never two Facebook posts in one day. LinkedIn company page 09:30 on weekdays;
+founder posts are drafts the founder posts himself. Google Business Profile Monday 11:00.
+
+## Address in copy
+
+Write "494, 15th Main, 3rd Stage, 1st Block, Basaveshwara Nagar" (or "494, 15th Main" for short).
+Never "#494": Facebook and Instagram turn it into a hashtag.
+
+## Recurring series
+
+| Series | Pillar | What it is |
+|---|---|---|
+| **Site Diary** | Proof | Dated, unedited FOUR·94 progress, same angles each time |
+| **Study** | Deliberately few | One design or planning decision explained |
+| **Ledger** | Proof | What is approved, what is to follow, how to check |
+| **Ask Ameya** | Founder-led | A real question from an enquiry, answered with no personal details |
+| **Founder's Desk** | Founder-led | Why we build few projects, how we work |
+| **Sunday Standard** | Markets with evidence | Locality and infrastructure facts with sources |
 
 ## Hashtags
 
-Keep to 3 to 5, relevant only, for example #FOUR94 #BasaveshwaraNagar #BengaluruCommercial #AmeyaHeights.
+- Instagram: 5–8 per post (2 brand, 3 topic, 2 local), for example #AmeyaHeights #FOUR94
+  #CommercialRealEstate #BengaluruCommercial #OfficeSpace #BasaveshwaraNagar #WestBangalore.
+- Salavakkam: #Chennai #Kanchipuram #PlottedDevelopment. NRI content: #NRIInvestment.
+- LinkedIn: 0–3. Facebook: 2–3. Never #BuiltInTheOpen.
+
+## WhatsApp broadcasts
+
+At most one a month, opt-in contacts only, owner-approved like everything else.

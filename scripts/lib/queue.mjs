@@ -8,14 +8,16 @@ import { fileURLToPath } from 'node:url';
 export const ROOT = resolve(process.env.SMA_ROOT || join(dirname(fileURLToPath(import.meta.url)), '..', '..'));
 export const STATUSES = ['pending', 'approved', 'rejected', 'published'];
 export const CHANNELS = ['instagram', 'facebook', 'gbp', 'whatsapp', 'linkedin', 'youtube'];
-export const KINDS = ['post', 'story', 'reel', 'reply', 'review_reply', 'dm', 'ad'];
+export const KINDS = ['post', 'story', 'reel', 'video', 'reply', 'review_reply', 'dm', 'ad'];
 
 export const dirFor = (status) => join(ROOT, 'queue', status);
 
 // The fields a human approves. Changing any of them after approval voids the approval.
+// `lead` is included because the publisher writes it to the CRM. It is only added when present, so
+// items approved before leads existed keep the same hash and stay publishable after an upgrade.
 export function approvedPayload(item) {
-  const { channel, kind, target = null, content, scheduled_for = null, spend_inr = 0 } = item;
-  return { channel, kind, target, content, scheduled_for, spend_inr };
+  const { channel, kind, target = null, content, scheduled_for = null, spend_inr = 0, lead = null } = item;
+  return { channel, kind, target, content, scheduled_for, spend_inr, ...(lead != null ? { lead } : {}) };
 }
 
 function canonical(value) {
@@ -33,16 +35,36 @@ export function validate(item) {
   if (!item || typeof item !== 'object') return ['item must be an object'];
   if (!CHANNELS.includes(item.channel)) errors.push(`channel must be one of ${CHANNELS.join(', ')}`);
   if (!KINDS.includes(item.kind)) errors.push(`kind must be one of ${KINDS.join(', ')}`);
-  if (!item.content || typeof item.content.text !== 'string' || !item.content.text.trim()) {
-    errors.push('content.text is required');
-  }
-  if (item.content?.media && !Array.isArray(item.content.media)) errors.push('content.media must be an array');
+  const c = item.content;
+  if (!c || typeof c.text !== 'string' || !c.text.trim()) errors.push('content.text is required');
+  if (c?.media && !Array.isArray(c.media)) errors.push('content.media must be an array');
   if (item.spend_inr !== undefined && !(Number.isFinite(item.spend_inr) && item.spend_inr >= 0)) {
     errors.push('spend_inr must be a non-negative number');
   }
   if (item.scheduled_for && Number.isNaN(Date.parse(item.scheduled_for))) errors.push('scheduled_for must be an ISO date');
   if (['reply', 'review_reply', 'dm'].includes(item.kind) && !item.target) errors.push(`${item.kind} needs a target`);
   if (item.channel === 'whatsapp' && item.kind !== 'dm') errors.push('whatsapp items must be kind "dm"');
+  // The Facebook adapter cannot publish reels, and the Instagram and Facebook adapters publish only
+  // media[0]. Catch both here so a draft fails at queue time, not silently at publish time.
+  if (item.channel === 'facebook' && item.kind === 'reel') {
+    errors.push('facebook cannot publish a reel: queue it as a facebook post with one video or image, or post it by hand');
+  }
+  if (['instagram', 'facebook'].includes(item.channel) && Array.isArray(c?.media) && c.media.length > 1) {
+    errors.push('instagram/facebook publish one image or video per item; split carousels into separate items or post them by hand');
+  }
+  if (item.channel === 'youtube') {
+    if (item.kind !== 'video') errors.push('youtube items must be kind "video"');
+    if (!c?.title || c.title.length > 100) errors.push('youtube needs content.title (up to 100 characters)');
+    if (!c?.media?.[0]) errors.push('youtube needs the video file in content.media[0]');
+  }
+  if (c?.template !== undefined) {
+    if (item.channel !== 'whatsapp') errors.push('content.template is only for WhatsApp');
+    if (!c.template?.name || typeof c.template.name !== 'string') errors.push('content.template.name is required');
+    if (c.template?.params && !Array.isArray(c.template.params)) errors.push('content.template.params must be an array');
+  }
+  if (item.lead !== undefined && item.lead !== null) {
+    if (typeof item.lead !== 'object' || (!item.lead.phone && !item.lead.email)) errors.push('lead needs a phone or email');
+  }
   return errors;
 }
 

@@ -9,18 +9,59 @@
       }
     ]
   },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "excludedCommands": [
+      "npm run queue -- add *",
+      "node scripts/queue.mjs add *",
+      "npm run inbox",
+      "npm run insights"
+    ],
+    "filesystem": {
+      "denyWrite": [
+        "./scripts",
+        "./config",
+        "./queue",
+        "./tests",
+        "./outbox",
+        "./package.json",
+        "./.env",
+        "./.env.*",
+        "./brand/ameya-heights/compliance.json",
+        "./brand/ameya-heights/facts.md",
+        "./logs/approvals.log",
+        "./logs/published.log",
+        "./logs/scheduler.log"
+      ],
+      "denyRead": ["./.env", "./.env.local", "./.env.production", "./.env.development"]
+    },
+    "network": { "allowedDomains": [] }
+  },
   "permissions": {
+    "ask": ["Bash(dangerouslyDisableSandbox:true)"],
     "deny": [
       "Bash(npm run approve:*)",
       "Bash(npm run reject:*)",
+      "Bash(npm run review:*)",
+      "Bash(npm run youtube-auth:*)",
+      "Bash(npm run schedule:install:*)",
+      "Bash(npm run schedule:uninstall:*)",
       "Bash(node scripts/queue.mjs approve:*)",
       "Bash(node scripts/queue.mjs reject:*)",
+      "Bash(node scripts/review.mjs:*)",
       "Edit(queue/**)",
       "Write(queue/**)",
       "Edit(config/owner.json)",
       "Write(config/owner.json)",
       "Read(.env)",
-      "Read(.env.*)"
+      "Edit(.env)",
+      "Write(.env)",
+      "Read(.env.local)",
+      "Read(.env.*.local)",
+      "Read(.env.production)",
+      "Read(.env.development)"
     ]
   }
 }

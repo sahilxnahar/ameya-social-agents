@@ -1,40 +1,52 @@
 # Ameya Heights: voice
 
+Source: Brand Canon and Messaging Master (13 July 2026), with the owner's decisions of 21 October 2026.
+
 ## In one line
 
-Founder-led and built in the open: plain, honest, checkable. We would rather be believed than be loud.
+Founder-led and verifiable: "verify us", never "trust us". Plain, calm, checkable. We would rather be
+believed than be loud.
 
-## Principles
+## Pillars
 
-- **Checkable over persuasive.** Every claim should be something a buyer's advocate could verify.
-- **Approvals first.** Talk about what is approved, and say plainly what is still to follow.
-- **Founder-accountable.** "We" voice. The founder signs off and is reachable.
-- **Built in the open.** Show real progress: shuttering, slabs, site visits. No fake renders.
-- **Documents before you pay.** Invite people to see papers, not to rush.
+1. **Proof, not promises.** Dated, unedited progress. Documents before anyone pays. Every claim is
+   something a buyer's advocate could check.
+2. **Founder-led accountability.** A named founder who answers. "We" voice; the founder signs off.
+3. **Deliberately few, deliberately better.** We build a small number of projects on purpose.
+4. **Markets chosen with evidence.** Why West Bengaluru, why Kanchipuram district, with sources.
+
+The phrase "built in the open" is **retired**. Keep the idea, never the words.
 
 ## Taglines
 
-- "Building Spaces. Shaping Legacies."
-- "A new landmark for your legacy."
+- Corporate signature: "Building Spaces. Shaping Legacies."
+- Campaign line: "A New Landmark for Your Legacy."
+- Never put both in one lockup. Secondary lines: "Trust, earned the right way." · "Two markets. One standard."
+
+## Words
+
+- Use: address, landmark, legacy, verifiable, clean title, accountable, founder-led, master-planned.
+- House style: "enquiry" (not inquiry), "channel partner" (not broker), "joint development" (not JD),
+  "FOUR·94" in copy.
+- Address: "494, 15th Main", never "#494" (Facebook and Instagram turn it into a hashtag).
+- Never: exclamation marks; luxury, iconic, world-class, stunning, unparalleled, opulent, majestic;
+  "trust us"; "transparent"; "built in the open"; ALL-CAPS urgency; hurry, last few, limited period,
+  best investment, once in a lifetime, guaranteed, assured; 🔥 🚀.
+- Emoji: none in first contact, at most two elsewhere, usually none.
+- Call-centre tone is out: "Dear Sir/Madam", "kindly revert", "greetings of the day".
+- Never name or compare ourselves with another developer.
 
 ## Do
 
-- Short sentences. Concrete numbers from the fact sheet, always with "about" for areas.
-- One clear next step: book a site visit (primary), WhatsApp us, or get the brochure.
-- Reply to people by name, thank them, answer the actual question.
-- Label renders as "artist's impression".
-
-## Don't
-
-- Hype words: best investment, hurry, last few, once in a lifetime, guaranteed.
-- Call-centre tone: "Dear Sir/Madam", "kindly revert", "greetings of the day".
-- Promise dates, returns, appreciation or rent growth.
-- Emoji walls. One emoji at most, and usually none.
-- Compare ourselves by name with Prestige, Sobha, Brigade, Godrej or any other developer.
+- Short sentences. Numbers only from the fact sheet, with "about" for areas and "target" for dates.
+- One clear next step: book a site visit (primary), WhatsApp us, or request the document pack.
+- Reply to people by name, thank them, answer the actual question. Sign replies "— Team Ameya
+  Heights"; sign as the founder only when the owner asks for that reply.
+- Label renders "Artist's impression"; date real photos; label stock as illustrative.
 
 ## Examples
 
 Good: "First-floor shuttering is up at FOUR·94. Foundation, basement and ground floor are done.
-Target completion is Q1 2028. Leasing enquiries: WhatsApp +91 99629 65000."
+Target completion Q1 2028. Leasing enquiries: WhatsApp +91 99629 65000."
 
-Bad: "🔥 Hurry! Premium A-grade commercial space with assured rental returns! Limited units left! 🔥"
+Bad: "🔥 Hurry! Iconic A-grade luxury space with assured rental returns! Limited floors left! 🔥"

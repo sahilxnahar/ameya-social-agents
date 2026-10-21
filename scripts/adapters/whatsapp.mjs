@@ -1,5 +1,19 @@
 // WhatsApp Business Cloud API. Free-form text only works inside the 24-hour window after the
-// customer's last message; outside it Meta requires an approved template, which this does not send.
+// customer's last message; outside it, use an approved template in content.template
+// ({ name, language, params }). content.text then holds the rendered text the owner approves.
+export function messageFor(item) {
+  const tpl = item.content.template;
+  if (!tpl) return { type: 'text', text: { body: item.content.text } };
+  return {
+    type: 'template',
+    template: {
+      name: tpl.name,
+      language: { code: tpl.language || 'en' },
+      ...(tpl.params?.length ? { components: [{ type: 'body', parameters: tpl.params.map((t) => ({ type: 'text', text: String(t) })) }] } : {}),
+    },
+  };
+}
+
 export const adapter = {
   mode: 'live',
   missing: (env) => ['WA_PHONE_NUMBER_ID', 'WA_TOKEN'].filter((k) => !env[k]),
@@ -10,7 +24,7 @@ export const adapter = {
     const res = await fetchImpl(`https://graph.facebook.com/${version}/${env.WA_PHONE_NUMBER_ID}/messages`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${env.WA_TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messaging_product: 'whatsapp', to, type: 'text', text: { body: item.content.text } }),
+      body: JSON.stringify({ messaging_product: 'whatsapp', to, ...messageFor(item) }),
     });
     const body = await res.json().catch(() => ({}));
     if (!res.ok || body.error) throw new Error(`WhatsApp API ${res.status}: ${body.error?.message || 'unknown error'}`);

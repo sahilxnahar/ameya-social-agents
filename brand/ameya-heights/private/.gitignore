@@ -1,0 +1,3 @@
+# Internal Ameya Heights knowledge stays on the owner's machine. Never commit it.
+*
+!.gitignore

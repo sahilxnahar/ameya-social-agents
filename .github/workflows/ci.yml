@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # No dependencies to install: the framework uses Node built-ins only.
+      - run: npm test
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Private and working files are not tracked
+        run: |
+          fail=0
+          private=$(git ls-files brand/ameya-heights/private | grep -v '^brand/ameya-heights/private/\.gitignore$' || true)
+          if [ -n "$private" ]; then
+            echo "::error::Internal files under brand/ameya-heights/private/ are tracked:"
+            echo "$private"
+            fail=1
+          fi
+          working=$( { git ls-files drafts reports outbox; git ls-files | grep -E '^(queue/[^/]+/[^/]+\.json|logs/[^/]+\.log|(.*/)?\.env(\.[^/]+)?)$' | grep -v '\.env\.example$'; } || true)
+          if [ -n "$working" ]; then
+            echo "::error::Working data or credentials are tracked (drafts, reports, outbox, queue items, logs, .env):"
+            echo "$working"
+            fail=1
+          fi
+          exit $fail
