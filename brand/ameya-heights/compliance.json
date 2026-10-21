@@ -1,0 +1,33 @@
+{
+  "_note": "Machine-checked rules for every Ameya Heights draft. Errors block the draft from the queue. Source of truth: the owner fact pass in the Ameyaheights website repo (PRODUCT.md, llms.txt), Oct 2026. Only the owner edits this file.",
+  "banned": [
+    { "pattern": "\\b(guaranteed|assured|fixed)\\s+(returns?|rental|rent|yield|appreciation|income)", "why": "no guaranteed returns, ever" },
+    { "pattern": "\\b\\d+(\\.\\d+)?\\s?%\\s*(returns?|yield|appreciation|roi|growth|rental)", "why": "no return, yield or growth figures without a visible source the owner has approved" },
+    { "pattern": "(₹|\\bRs\\.?|\\bINR)\\s?\\d|\\b\\d+(\\.\\d+)?\\s?(lakhs?|lacs?|crores?|cr)\\b|per\\s+sq\\.?\\s?ft", "why": "pricing is on request only" },
+    { "pattern": "\\bRERA[- ]?(registered|approved|certified|compliant)|\\bregistered\\s+(with|under)\\s+RERA", "why": "no Ameya Heights project is RERA-registered" },
+    { "pattern": "RERA[^.\\n]{0,30}(in progress|applied|pending|soon)", "why": "the only approved wording is \"RERA registration to follow\"" },
+    { "pattern": "\\bDTCP[- ]?(approved|sanctioned)", "why": "Salavakkam DTCP approval is to follow" },
+    { "pattern": "column[- ]free|\\bA[- ]grade\\b|fire\\s+NOC|\\b(two|2|second|twin)\\s+lifts?\\b", "why": "banned FOUR·94 spec claims (one lift, no fire NOC or grade claims)" },
+    { "pattern": "award[- ]winning|\\btrusted by\\b|\\b\\d+\\+?\\s+(happy\\s+)?(families|customers|clients|buyers)\\b|\\btrack record\\b", "why": "there are no awards, testimonials or sales numbers to cite" },
+    { "pattern": "\\b(best|safest|smartest)\\s+investment\\b|\\bonce[- ]in[- ]a[- ]lifetime\\b|\\bhurry\\b|\\blast few\\b|\\blimited[- ]period\\b", "why": "no hype or pressure selling; the voice is checkable over persuasive" },
+    { "pattern": "\\bdrone\\s+(shot|footage|view)|\\baerial\\s+view\\b", "why": "no real drone footage exists; do not present stock aerials as the site" }
+  ],
+  "combos": [
+    { "all": ["salavakkam", "\\b(book(ing)?|buy|purchase|for sale|reserve|eoi|expression of interest|token|advance|price|pre[- ]?launch)\\b"], "message": "Salavakkam is not RERA-registered: posts may share progress, not invite booking, buying, EOIs or prices (RERA s.3)" },
+    { "all": ["jodhpur", "\\b(book(ing)?|buy|purchase|for sale|available|reserve|enquire|price)\\b"], "message": "Jodhpur is early planning and not for sale" },
+    { "all": ["four\\s?[·.\\-]?\\s?94", "\\b(for sale|buy|purchase|ownership)\\b"], "message": "FOUR·94 is offered for lease, pre-lease or build-to-suit, not for sale" }
+  ],
+  "conditional": [
+    { "if": "\\b(possession|handover|completion|ready by|complete by|completed by)\\b", "then_require": "\\b(target|targeted|expected|planned|subject to)\\b", "message": "dates are targets: say \"target completion Q1 2028\", never a promise" },
+    { "if": "\\bsalavakkam\\b[\\s\\S]*\\b(rera|dtcp)\\b|\\b(rera|dtcp)\\b[\\s\\S]*\\bsalavakkam\\b", "then_require": "to follow", "message": "Salavakkam approvals must be described as \"to follow\"" }
+  ],
+  "promo_footer": [],
+  "warn": [
+    { "pattern": "\\b(ultra[- ]luxury|world[- ]class|iconic|landmark|premium)\\b", "why": "check this adjective is earned and not puffery" },
+    { "pattern": "\\bNRI\\b|\\bgulf\\b|\\bdubai\\b", "why": "NRI content: confirm nothing implies FEMA or tax advice" },
+    { "pattern": "\\bmetro\\b", "why": "distances must match the fact sheet (about 1.2 km Rajajinagar, 1.7 km Mahalakshmi)" },
+    { "pattern": "\\brender(ing)?s?\\b|\\b3d\\b|\\bvisuali[sz]ation\\b", "why": "renders must be labelled as artist's impressions" },
+    { "pattern": "\\bsq\\.?\\s?ft\\b", "why": "areas must match the fact sheet and say \"about\"" }
+  ],
+  "max_length": { "instagram": 2200, "facebook": 63206, "gbp": 1500, "linkedin": 3000, "youtube": 5000, "whatsapp": 4096 }
+}

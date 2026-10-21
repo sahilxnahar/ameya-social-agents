@@ -1,0 +1,7 @@
+{
+  "_note": "Copy to config/owner.json (git-ignored) and edit. Agents cannot edit either file.",
+  "brand": "ameya-heights",
+  "approver": "Owner",
+  "monthly_spend_cap_inr": 0,
+  "timezone": "Asia/Kolkata"
+}

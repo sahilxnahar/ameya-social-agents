@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/approval-gate.mjs\"" }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": [
+      "Bash(npm run approve:*)",
+      "Bash(npm run reject:*)",
+      "Bash(node scripts/queue.mjs approve:*)",
+      "Bash(node scripts/queue.mjs reject:*)",
+      "Edit(queue/**)",
+      "Write(queue/**)",
+      "Edit(config/owner.json)",
+      "Write(config/owner.json)",
+      "Read(.env)",
+      "Read(.env.*)"
+    ]
+  }
+}

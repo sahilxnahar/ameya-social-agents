@@ -1,0 +1,15 @@
+{
+  "name": "social-media-agent",
+  "version": "0.1.0",
+  "description": "A Claude Code agent team that drafts a brand's social media and never posts without the owner's approval.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "queue": "node scripts/queue.mjs",
+    "approve": "node scripts/queue.mjs approve",
+    "reject": "node scripts/queue.mjs reject",
+    "publish": "node scripts/publish.mjs",
+    "test": "node --test tests/"
+  }
+}
